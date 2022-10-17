@@ -66,8 +66,10 @@ mainContainer.addEventListener(
 )
 
 export const Requests = () => {
-    const requests = getRequests()
-    const completions = getCompletions()
+    let requests = getRequests()
+    requests = requests.sort((request1,request2)=> parseInt(request1.partyDate)-parseInt(request2.partyDate))
+    let completions = getCompletions()
+    completions = completions.sort((completion1,completion2)=> parseInt(completion1.partyDate)-parseInt(completion2.partyDate))
     let html = `
 
         <ul>
