@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
+
+
+/*Typography
+--------------------------------------------------------------*/
+.field {
+	display: flex;
+	flex-direction: column;
+	font-family: "Patua One", serif;
+	flex-basis: 100%;
+	letter-spacing: 2px;
+}
+ul {
+	padding-inline-start: 0px;
+}
+
+div.ul {
+	background-color: steelblue;
+	font-size: 16px;
+	display: grid;
+	grid-template-columns: 60px 60% 150px 150px;
+	padding-top: 1ch;
+	padding-bottom: 1ch;
+}
+
+li::before {
+	content: url("./buttonAndlollipop.png");
+	max-height: 50px;
+}
+
+li {
+	display: grid;
+	grid-template-columns: 60px 60% 100px 150px;
+	align-items: center;
+}
+button.request__delete{
+	margin-left: 50px;
+}
+li:nth-child(n) {
+	background-color: rgba(0, 191, 255, 0.695);
+}
+
+li:nth-child(2n) {
+	background-color: deepskyblue
+}
