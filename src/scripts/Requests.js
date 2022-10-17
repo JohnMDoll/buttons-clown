@@ -1,8 +1,9 @@
-import { getRequests, deleteRequest, getClowns, sendCompletion } from "./dataAccess.js"
+import { getRequests, deleteRequest, getClowns, sendCompletion, getCompletions } from "./dataAccess.js"
 
 const requestsStuffToMapForHTML = (request) => {
 
     const clowns = getClowns()
+
     return `
      <li id="request--${request.id}">${request.childName} at ${request.address}, ${request.partyDate}   
      <select class="clowns" id="clowns">
@@ -14,6 +15,20 @@ const requestsStuffToMapForHTML = (request) => {
     ).join("")
         }
 </select><button class="request__delete" id="request__${request.id}">Delete</button></li>`
+}
+
+const completionsStuffToMapForHTML = (completion) => {
+    let clownHTML=""
+    const clowns = getClowns()
+    for (const clown of clowns) {
+        if (clown.id === parseInt(completion.clownId)) {
+            clownHTML = `
+            <li class="completed" id="completed--${completion.id}">${completion.childName} at ${completion.address}, ${completion.partyDate}   
+            <div class="clowns" id="clowns">${clown.name}</div></li>`
+
+        }
+    }
+    return clownHTML
 }
 
 const mainContainer = document.querySelector("#container")
@@ -52,15 +67,16 @@ mainContainer.addEventListener(
 
 export const Requests = () => {
     const requests = getRequests()
-
+    const completions = getCompletions()
     let html = `
 
         <ul>
         <div class="ul"><a></a><a>Requests:</a><a>Clown Picker:</a><a>Reject:</a></div>
-            ${requests.map(requestsStuffToMapForHTML).join("")
-        }
-        </ul>
-    `
+            ${requests.map(requestsStuffToMapForHTML).join("")}`
+    html += `
+        ${completions.map(completionsStuffToMapForHTML).join("")}
+        </ul>`
 
     return html
 }
+

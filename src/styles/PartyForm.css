@@ -43,3 +43,10 @@ li:nth-child(n) {
 li:nth-child(2n) {
 	background-color: deepskyblue
 }
+li.completed:nth-child(n) {
+	background-color: rgba(255, 0, 0, 0.35);
+}
+
+li.completed:nth-child(2n) {
+	background-color: rgba(255, 0, 0, 0.54);
+}
